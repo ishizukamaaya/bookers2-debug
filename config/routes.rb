@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+  get 'users/show'
   devise_for :users
   resources :users,only: [:show,:index,:edit,:update] do
     resource :relationships, only: [:create, :destroy]
@@ -11,8 +13,11 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
+
   root to: 'homes#top'
   get 'home/about' => 'homes#about'
   get 'search' => 'searches#search'
 
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create,:show]
 end
