@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#about'
   get 'search' => 'searches#search'
 
-  resources :messages, only: [:create]
-  resources :rooms, only: [:create,:show]
+  resources :messages, only: [:create, :show]
+  # resources :rooms, only: [:create,:show]
 end
