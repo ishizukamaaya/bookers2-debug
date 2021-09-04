@@ -1,11 +1,15 @@
 class BooksController < ApplicationController
-  before_action :ensure_correct_user, only: [:update, :edit]
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
+  impressionist :actions=> [:show]
 
   def show
     @book = Book.find(params[:id])
     @user = @book.user
     @bookc = Book.new
     @post_comment = PostComment.new
+    impressionist(@book, nil, unique: [:session_hash.to_s])
   end
 
   def index
@@ -18,6 +22,7 @@ class BooksController < ApplicationController
       }
     @book = Book.new
   end
+
 
   def create
     @book = Book.new(book_params)
@@ -34,8 +39,6 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
   end
-
-
 
   def update
     @book = Book.find(params[:id])
@@ -64,6 +67,4 @@ class BooksController < ApplicationController
     redirect_to books_path
     end
   end
-
-
 end
