@@ -21,10 +21,17 @@ class BooksController < ApplicationController
       #   b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
       #   a.favorited_users.includes(:favorites).where(created_at: from...to).size
       # }
-
     @books = Book.all
-
     @book = Book.new
+
+    @today_book = @books.created_today
+    @yesterday_book = @books.created_yesterday
+    @two_days_ago_book = @books.created_two_days_ago
+    @three_days_ago_book = @books.created_three_days_ago
+    @four_days_ago_book = @books.created_four_days_ago
+    @five_days_ago_book = @books.created_five_days_ago
+    @six_days_ago_book = @books.created_six_days_ago
+
   end
 
 
