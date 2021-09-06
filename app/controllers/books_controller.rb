@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
+
   impressionist :actions=> [:show]
 
   def show
@@ -13,13 +14,16 @@ class BooksController < ApplicationController
   end
 
   def index
-    to  = Time.current.at_end_of_day
-    from  = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorited_users).
-      sort {|a,b|
-        b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
-        a.favorited_users.includes(:favorites).where(created_at: from...to).size
-      }
+    # to  = Time.current.at_end_of_day
+    # from  = (to - 6.day).at_beginning_of_day
+    # @books = Book.includes(:favorited_users).
+      # sort {|a,b|
+      #   b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
+      #   a.favorited_users.includes(:favorites).where(created_at: from...to).size
+      # }
+
+    @books = Book.all
+
     @book = Book.new
   end
 
@@ -67,4 +71,5 @@ class BooksController < ApplicationController
     redirect_to books_path
     end
   end
+
 end

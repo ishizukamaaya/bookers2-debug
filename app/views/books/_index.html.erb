@@ -5,7 +5,6 @@
       <th>Title</th>
       <th>Opinion</th>
       <th colspan="4"></th>
-
     </tr>
   </thead>
   <tbody>
@@ -22,6 +21,7 @@
        <td class="comments-count">コメント数: <%= book.post_comments.count %></td>
        <td class="book-evaluation" data-score="<%= book.evaluation %>"></td>
        <td>閲覧数:<%= book.impressionist_count %></td>
+
       </tr>
     <% end %>
   </tbody>

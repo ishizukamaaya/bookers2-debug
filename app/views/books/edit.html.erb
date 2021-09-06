@@ -21,6 +21,16 @@
         </div>
 
         <div class="book-evaluation" data-score="<%= @book.evaluation %>"></div>
+        <script>
+          $('.book-evaluation').raty({
+            readOnly: true,
+            score: function() {
+              return $(this).attr('data-score');
+            },
+            path: '/assets/'
+          });
+        </script>
+
 
         <div class="form-group">
           <%= f.submit class: 'btn btn-success' %>
@@ -33,12 +43,3 @@
   </div>
 </div>
 
-<script>
-  $('.book-evaluation').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-</script>
