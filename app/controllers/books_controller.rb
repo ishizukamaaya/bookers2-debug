@@ -32,12 +32,7 @@ class BooksController < ApplicationController
     @five_days_ago_book = @books.created_five_days_ago
     @six_days_ago_book = @books.created_six_days_ago
 
-    # @books = Book.order(created_at: :desc)
-    if params[:evaluation_sort]
-      @books = Book.order(evaluation: :desc)
-    else
-      @books = Book.order(created_at: :desc)
-    end
+    @books = Book.all.order(params[:sort])
   end
 
 
@@ -72,10 +67,15 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def search_book
+     @book = Book.new
+     @books = Book.search(params[:keyword])
+  end
+
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :evaluation)
+    params.require(:book).permit(:title, :body, :evaluation, :category)
   end
 
   def ensure_correct_user

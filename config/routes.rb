@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   get 'search' => 'searches#search'
 
   resources :messages, only: [:create, :show]
+
+  get 'search_book' => 'books#search_book'
+
 end

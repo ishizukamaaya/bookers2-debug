@@ -14,10 +14,7 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= link_to "新しい順", books_path(created_at_sort: :true) %>
-      |
-      <%= link_to "評価順", books_path(evaluation_sort: :true) %>
-
+      <%= link_to "新しい順", books_path(sort: 'created_at DESC') %> | <%= link_to "評価の高い順", books_path(sort: 'evaluation DESC') %>
       <%= render 'index', books: @books, book: @book %>
       <%= render 'book_index' %>
 
