@@ -8,8 +8,11 @@ class Book < ApplicationRecord
 
  is_impressionable
 
- default_scope -> { order(evaluation: :desc) }
- # default_scope -> { order(created_at: :desc) }
+ # default_scope -> { order(evaluation: :desc) }
+ # # default_scope -> { order(created_at: :desc) }
+ # Book.order(:evaluation,created_at: :desc)
+ #SELECT "books".* FROM "books" ORDER BY "books"."evaluation" DESC, "books"."created_at" DESC
+ 
 
  scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
  scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }

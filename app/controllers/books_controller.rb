@@ -32,6 +32,12 @@ class BooksController < ApplicationController
     @five_days_ago_book = @books.created_five_days_ago
     @six_days_ago_book = @books.created_six_days_ago
 
+    # @books = Book.order(created_at: :desc)
+    if params[:evaluation_sort]
+      @books = Book.order(evaluation: :desc)
+    else
+      @books = Book.order(created_at: :desc)
+    end
   end
 
 
