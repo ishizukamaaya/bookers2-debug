@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get 'search_book' => 'books#search_book'
 
-  resources :groups, only: [:index, :show, :edit, :create, :update, :new, :show]
-
+  resources :groups do
+    get 'join' => 'groups#join'
+  end
 end
