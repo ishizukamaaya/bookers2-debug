@@ -7,40 +7,8 @@
       <%= render 'form', book: @book %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <table class='table table-hover table-inverse'>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Opinion</th>
-            <th>category</th>
-            <th colspan="4"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @books.exists? %>
-            <% @books.each do |book| %>
-              <tr id="book_<%= book.id %>">
-                <td><%= link_to user_path(book.user) do %>
-                  <%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
-                  <% end %>
-                </td>
-                <td><%= link_to book_path(book.id) do %><%= book.title %></td>
-                <% end %>
-                <td><%= book.body %></td>
-                <td><%= link_to book.category, search_book_path(keyword: book.category) %></td>
-                <td class="favorite-btn"><%= render "favorites/favorite-btn", book: book %></td>
-            　   <td class="comments-count">コメント数: <%= book.post_comments.count %></td>
-                <td class="book-evaluation" data-score="<%= book.evaluation %>"></td>
-
-                <td>閲覧数:<%= book.impressionist_count %></td>
-              </tr>
-            <% end %>
-          <% else %>
-           <p>該当する記事は見つかりませんでした。</p>
-　        <% end %>
-        </tbody>
-      </table>
+      <h2>Books</h2>
+        <%= render 'books/index', books: @books %>
     </div>
   </div>
 </div>

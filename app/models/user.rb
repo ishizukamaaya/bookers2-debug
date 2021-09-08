@@ -10,9 +10,10 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
 
   has_many :books, dependent: :destroy
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-
   has_many :entries
   has_many :messages
   has_many :rooms, through: :entries
