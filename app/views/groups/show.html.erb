@@ -31,11 +31,12 @@
             </td>
           <td>
             <% if @group.owner_id == current_user.id %>
-              <%= link_to "Edit", edit_group_path(@group), class: 'btn btn-success' %>
+              <th><%= link_to "Edit", edit_group_path(@group), class: 'btn btn-success' %></th>
+              <th><%= link_to 'Notice an Event', group_new_mail_path(@group), class: "btn btn-info" %></th>
             <% elsif @group.users.include?(current_user) %>
-            　<%=link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+            　<th><%=link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-sm btn-danger" %></th>
             <% else %>
-              <%= link_to 'Join this group', group_join_path(@group), class: "btn btn-sm btn-success" %>
+              <th><%= link_to 'Join this group', group_join_path(@group), class: "btn btn-sm btn-success" %></th>
              <% end %>
           </td>
         </tr>
