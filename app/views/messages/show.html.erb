@@ -1,13 +1,34 @@
 <h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
 
 <div class="message" style="width: 400px;">
-  <% @messages.each do |message| %>
-    <% if message.user_id == current_user.id %>
-      <p style="text-align: right;"><%= message.content %></p>
-    <% else %>
-      <p style="text-align: left;"><%= message.content %></p>
-    <% end %>
-  <% end %>
+  <table class="message table">
+              <thead>
+                <tr>
+                  <th style="text-align: left; font-size: 20px;"><%= current_user.name %></th>
+                  <th style="text-align: right; font-size: 20px;"><%= @user.name %></th>
+                </tr>
+              </thead>
+              <% @messages.each do |message| %>
+                <% if message.user_id == current_user.id %>
+                <tbody>
+                  <tr>
+                    <th>
+                      <p style="text-align: left;"><%= message.content %></p>
+                    </th>
+                    <th></th>
+                  </tr>
+                <% else %>
+                  <tr>
+                    <th></th>
+                    <th>
+                      <p style="text-align: right;"><%= message.content %></p>
+                    </th>
+                  </tr>
+                </tbody>
+                <% end %>
+              <% end %>
+            </table>
+
 </div>
 
 <%= form_with model: @message, data: {remote: true} do |f| %>
